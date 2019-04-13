@@ -25,6 +25,9 @@ CREATE ROLE "role_name" WITH LOGIN PASSWORD 'password';
 DROP ROLE "role_name";
 ```
 ## Privileges
+##### Inheritance
+* LOGIN, SUPERUSER, CREATEDB, and CREATEROLE cannot be inherited. They must be granted directly.
+##### Statements
 This grants permissions for all database operations - like connect. There are probably more refined permissions to explore.
 ```sql
 GRANT ALL PRIVILEGES ON DATABASE db_name TO "role_name";
