@@ -17,9 +17,15 @@ TYPE | DATABASE | USER | ADDRESS | METHOD
 host | all | all | 127.0.0.1/32 | md5
 
 # Database management
+## Account
+Environment variables for credentials (use for testing). Can be prepended to commands.
+> PGUSER=foo
+> PGPASSWORD=bar
+
 ## Roles
 ```sql
-CREATE ROLE "role_name" WITH LOGIN PASSWORD 'password';
+CREATE ROLE "role_name" WITH LOGIN PASSWORD 'password'; --Can log in.
+CREATE ROLE "role_name" WITH CREAREDB LOGIN PASSWORD 'password'; --Multiple role attributes
 ```
 ```sql
 DROP ROLE "role_name";
