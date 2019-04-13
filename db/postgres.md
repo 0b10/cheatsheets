@@ -31,6 +31,7 @@ CREATE ROLE "role_name" WITH CREAREDB LOGIN PASSWORD 'password'; --Multiple role
 DROP ROLE "role_name";
 ```
 ## Privileges
+[A complete list of privileges](https://www.postgresql.org/docs/current/sql-grant.html)
 ##### Inheritance
 * LOGIN, SUPERUSER, CREATEDB, and CREATEROLE cannot be inherited. They must be granted directly.
 ##### Statements
