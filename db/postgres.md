@@ -4,6 +4,7 @@ config file: `/var/lib/pgsql/data/pg_hba.conf`
 ## Options
 
 The 'method' specified here requires you to use a password, and is hashed with md5. You can choose other, more secure methods.
+
 Libraries like 'knex' will connect over TCP, even on the localhost. Commands like psql will connect via sockets on localhost.
 #### Unix Sockets
 TYPE | DATABASE | USER | ADDRESS | METHOD
