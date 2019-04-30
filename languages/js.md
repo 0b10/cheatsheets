@@ -1,3 +1,9 @@
+# TODO
+
+* Iterables
+* Async functions - push/pull generators
+* Event loop / message queue
+
 # All Versions
 ## Object Literal vs. JSON
 * They are not the same thing.
@@ -118,6 +124,73 @@ Use in cases where the object has a very large name.
 
 * Objects can be passed as arguments, and be destructured.
 * You can combine array and object destructuring.
+
+
+## Generators
+
+* Generator functions return an Iterator object when initially called: `let iter = someGenerator();`
+* Iterators implement the Iterator protocol - e.g. `next();`
+ 
+
+```javascript
+function* foo() {
+	yield 1;
+	yield 2;
+}
+
+let iter = foo(); // Although the shorthand seems to also work: e.g. (let bar of foo())
+for (let bar of iter) { // here.
+	console.log(bar);
+}
+
+// 1
+// 2
+```
+
+### The Actual Yielded Value
+
+Interestingly you can see the actual yielded return value when calling next() directly - which is an object, with a 'done' key:
+
+```javascript
+function* foo() {
+	yield 1;
+	yield 2;
+}
+
+let iter = foo();
+
+console.log(iter.next());
+console.log(iter.next());
+console.log(iter.next()); // There isn't a third yield
+
+// Object { value: 1, done: false }
+// Object { value: 1, done: false }
+// Object { value: undefined, done: true } // Yielded an undefined value.
+```
+
+### Return
+
+You must '*return*' an explicit value to signal the end of the generator.
+
+```javascript
+function* foo() {
+	yield 1;
+	yield 2;
+	return 3;
+}
+
+let iter = foo();
+
+console.log(iter.next());
+console.log(iter.next());
+console.log(iter.next()); // There isn't a third yield
+
+// Object { value: 1, done: false }
+// Object { value: 1, done: false }
+// Object { value: 3, done: true } // Return sets done to true
+
+// Pulling any more values results in { value: undefined, done: true }
+```
 
 ## Promises
 ### Example
