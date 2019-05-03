@@ -10,7 +10,91 @@
 * JSON requires property names to be strings: `"property": ...`
 * JSON values do not accept named references, their values are literal. Object literals can hold variables/functions etc.
 
+## Console
+
+### Compose Log Objects
+Using computed property names, you can log variables/objects as a single object - in a single log.
+
+```js
+console.log({ foo, bar, baz})
+// {foo: 1, bar: 2, baz: 3}
+// foo: 1
+// bar: 2
+// baz: 3
+```
+
+
+### Use Custom Styles
+
+`%c` indicates the intent to use css, the second arg is the styles.
+
+```js
+console.log('%c MSG', 'color: red; font-weight: bold');
+```
+
+
+### Table
+
+For objects that have common properties, you can display them as a table:
+
+```js
+foo = { a: 1, b: 2, c:3 };
+bar = { a: 4, b: 5, c:6 };
+baz = { a: 7, b: 8, c:9 };
+
+console.table([foo, bar, baz])
+```
+
+### Log Time
+
+You can use `console.time()` and `console.timeEnd()`, to time some code.
+
+### Trace
+
+You can perform a stack trace with `console.trace()`. It will tell you where it was called.
+
+```js
+func someFunc() {
+	console.trace('msg');
+	// do stuff.
+}
+```
+
+
 # ES6
+
+## Arrays
+
+### Reduce
+
+Accumulate against each value in an array. Reduce accepts a callback, that can be set to perform any logic required, to accumulate a value in any specific way. This is an alternative to looping, and performing manual arithmetic.
+
+```
+const accum = someArr.reduce((accum, current) => {...})
+```
+
+
+### Spread Syntax
+
+```javascript
+const foo = [1, 2, 3];
+const bar = [4, 5, 6];
+const foobar = [...foo, ...bar]
+```
+
+## Computed Property Names
+
+Property names that are computed at runtime
+
+```
+const bar = 'akey';
+const foo = {
+	[bar]: 'aval',
+}
+foo.akey
+// aval
+```
+
 ## Destructuring
 ### Arrays
 
@@ -306,7 +390,7 @@ Promise()
   * `then(null, failure)` is a more granular approach to `.catch(retval)`.
 
 ## Shorthand
-#### Object Literals
+### Object Literals
 
 ```javascript
 const baz = 'baz';
@@ -315,3 +399,17 @@ const foo = {
   baz, // No need for baz: baz,
 }
 ```
+
+### Spread Syntax
+
+#### Objects
+
+You can merge objects like so (objects on the right take priority, and overwrite when there's name collisions with the properties):
+
+```js
+const foo = {a: 1};
+const bar = {b: 2};
+const baz = {...foo, ...bar};
+// baz = {a: 1. b: 2}
+```
+
