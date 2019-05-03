@@ -61,6 +61,30 @@ func someFunc() {
 ```
 
 
+## This, That, Whatever
+
+### Bind() ([MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind))
+
+Bind can set the execution context. This doesn't work with arrow functions.
+
+```javascript
+const foo = {
+  bar: 1,
+  getBar: function () {
+    return this.bar;
+  },
+}
+
+foo.getBar.bind(foo)() // Bind just binds, you need to call the function too.
+// 1
+```
+
+### Arrow Functions ([Blog](https://derickbailey.com/2015/09/28/do-es6-arrow-functions-really-solve-this-in-javascript/))
+
+The context for arrow functions is always **where it is defined** - aka "lexical scoping".
+
+They are functions, and never methods.
+
 # ES6
 
 ## Arrays
