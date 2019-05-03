@@ -1,3 +1,10 @@
+# TODO
+## research 
+
+* Transactions: Atomic (all or nothing), i.e. no partial queries
+* ACID
+* Replication
+
 # Config
 ## File Path
 config file: `/var/lib/pgsql/data/pg_hba.conf`
