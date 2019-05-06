@@ -119,6 +119,40 @@ foo.akey
 // aval
 ```
 
+## Async/Await ([MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function))
+
+### Return Values
+
+Async functions return an **implicit promise**.
+
+* An implicit `resolve` is issued with `return`.
+* An implicit `reject` is issued by an **uncaught exceptions**.
+
+```js
+function async foo() {
+	throw Error(); // Rejects
+	return 'bar'; // Resolves
+}
+```
+
+### Return Await
+
+`return await Promise` cannot be guarenteed to be the same as `return Promise`. Because `return await Promise` causes execution to wait for a resolution or rejection at that particular line, a new Promise *may* be created under some circumstances, which may come with it's own state, or intention.
+
+One scenario:
+
+```
+function async foo() {
+	try {
+		return await bar(); // If rejects
+	} catch (e) {
+		Promise.resolve('trollface'); // Problem?
+	}
+	
+	return bar(); // Best approach - someone else's problem
+}
+```
+
 ## Destructuring
 ### Arrays
 
