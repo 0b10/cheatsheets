@@ -1,3 +1,49 @@
+# Server Side
+## TODO
+
+### Research
+
+* Flow types
+* Introspection
+* Promises
+
+## Misc
+
+### Glossary 
+
+* Fields: A member of a type/object. Typically is a scalar, or another type/object. They are not arguments.
+
+<details>
+	<summary>Perspective</summary>
+
+---
+
+#### Fields
+
+Each field is essentially just a function:
+
+```graphql
+// User type
+{
+	name: String
+}
+```
+
+Becomes:
+
+```javascript
+// User type
+{
+	name(user) { // Arg == parent field value
+		return user.name;
+	}
+}
+```
+
+---
+
+</details>
+
 ## Doc ([Spec](https://graphql.github.io/graphql-spec/June2018/#sec-Descriptions))
 
 Documentation is placed before the entity being destribed, and makes use of markdown
@@ -135,4 +181,8 @@ This is more of a category of types that can be used for input an output
 
 These *wrap* named types, and are continually unwrapped until named types are found - e.g. when used as input, or output types.
 
+# Client Side
+## Fragments
 
+* Essentially these are reusable functions
+* They allow complex queries to be built up with 'fragments', small subqueries
